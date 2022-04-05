@@ -10,18 +10,20 @@ const showLoader = show => {
 };
 
 export const getCarousel = () => {
-  showLoader(true);
   return async dispatch => {
+    dispatch(showLoader(true));
     try {
-      await axios.get(`${API_URL}movie/7631?pi_key=${API_KEY}`).then(res => {
-        showLoader(false);
-        return dispatch({
-          type: actionTypes.GET_CAROUSEL,
-          payload: res.data,
+      await axios
+        .get(`${API_URL}movie/top_rated?api_key=${API_KEY}`)
+        .then(res => {
+          dispatch(showLoader(false));
+          return dispatch({
+            type: actionTypes.GET_CAROUSEL,
+            payload: res.data.results,
+          });
         });
-      });
     } catch (e) {
-      showLoader(false);
+      dispatch(showLoader(false));
       dispatch({
         type: actionTypes.GET_CAROUSEL_ERROR,
         error: {err: true, message: e.message},
