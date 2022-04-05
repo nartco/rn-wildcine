@@ -1,14 +1,16 @@
 import React from 'react';
 import {StyleSheet, View, Text, SafeAreaView} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainNavigator from './navigation/MainNavigator';
+import {Provider} from 'react-redux';
+import configureStore from './redux/store/configureStore';
 
 const App = () => {
   return (
+    <Provider store={configureStore()}>
     <SafeAreaView style={styles.container}>
       <MainNavigator />
     </SafeAreaView>
+    </Provider>
   );
 };
 
