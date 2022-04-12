@@ -4,6 +4,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 
 import {View, Text, Platform} from 'react-native';
 import React from 'react';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../constants/colors';
 
 //screens
@@ -37,10 +38,58 @@ const barStyle = {
 
 const HomeTabs = () => (
   <Tab.Navigator barStyle={barStyle}>
-    <Tab.Screen name="Home" component={HomeScreen} />
-    <Tab.Screen name="Search" component={SearchScreen} />
-    <Tab.Screen name="Listing" component={ListingScreen} />
-    <Tab.Screen name="Favorite" component={FavoriteScreen} />
+    <Tab.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{
+        tabBarIcon: ({tintColor, focused}) => (
+          <MaterialIcons
+            name={'local-movies'}
+            color={Colors.primary}
+            size={28}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Search"
+      component={SearchScreen}
+      options={{
+        tabBarIcon: ({tintColor, focused}) => (
+          <MaterialIcons
+            name={'search'}
+            color={Colors.primary}
+            size={28}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Listing"
+      component={ListingScreen}
+      options={{
+        tabBarIcon: ({tintColor, focused}) => (
+          <MaterialIcons
+            name={'filter-list'}
+            color={Colors.primary}
+            size={28}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Favorite"
+      component={FavoriteScreen}
+      options={{
+        tabBarIcon: ({tintColor, focused}) => (
+          <MaterialIcons
+            name={'star-border'}
+            color={Colors.primary}
+            size={28}
+          />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 
