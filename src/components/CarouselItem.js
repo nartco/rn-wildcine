@@ -18,7 +18,8 @@ const CarouselItem = ({item, navigation}) => {
   const uri = `https://image.tmdb.org/t/p/original/${item.poster_path}`;
 
   useEffect(() => {
-    fetchColors(setTextColor, uri);
+    setTextColor(fetchColors(uri));
+    return () => {};
   }, []);
 
   return (
@@ -51,7 +52,7 @@ const CarouselItem = ({item, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {width, alignItems: 'center', marginTop: 10},
+  container: { alignItems: 'center', marginVertical: 10},
   imageContainer: {
     width: width / 2,
     height: height / 3,

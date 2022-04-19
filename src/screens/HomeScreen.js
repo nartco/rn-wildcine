@@ -19,7 +19,7 @@ const HomeScreen = ({navigation}) => {
   const loader = useSelector(state => state.home.loader);
 
   useEffect(() => {
-    dispatch(getCarousel());
+    dispatch(getCarousel(['top_rated', 'popular', 'upcoming']));
     MaterialIcons.loadFont();
 
     // return () => {
@@ -28,7 +28,7 @@ const HomeScreen = ({navigation}) => {
   }, []);
 
   const onPressHandler = () => {
-    return dispatch(getCarousel());
+    return dispatch(getCarousel(['top_rated', 'popular', 'upcoming']));
   };
 
   if (loader) {
@@ -44,10 +44,33 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Top Rated</Text>
       </View>
-      <Carousel data={carouselMovies} navigation={navigation} />
+      <Carousel
+        data={carouselMovies.top_rated}
+        navigation={navigation}
+        autoplay={true}
+        loop={true}
+        firstItem={1}
+      />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Upcoming</Text>
       </View>
+      <Carousel
+        data={carouselMovies.upcoming}
+        navigation={navigation}
+        autoplay={false}
+        loop={false}
+        firstItem={2}
+      />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Popular</Text>
+      </View>
+      <Carousel
+        data={carouselMovies.popular}
+        navigation={navigation}
+        autoplay={false}
+        loop={false}
+        firstItem={2}
+      />
     </ScrollView>
   );
 };
@@ -78,9 +101,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
-
-
-
   },
 });
 
